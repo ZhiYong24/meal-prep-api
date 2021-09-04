@@ -1,5 +1,6 @@
 package com.example.mealprep.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,5 +29,6 @@ public class MealPrep {
     double veggiesQuantity;
     String carb;
     double carbQuantity;
+    @JsonFormat(pattern="yyyy-MM-dd")
     LocalDate date;
 }
