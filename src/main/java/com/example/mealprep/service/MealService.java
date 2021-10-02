@@ -8,6 +8,7 @@ import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class MealService {
@@ -30,5 +31,10 @@ public class MealService {
 
         meal.setTimestamp(LocalDateTime.now());
         mealRepo.save(meal);
+    }
+
+    @Transactional
+    public List<Meal> getMeal() throws Exception {
+        return mealRepo.findAll();
     }
 }

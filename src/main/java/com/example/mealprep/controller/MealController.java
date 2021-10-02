@@ -5,10 +5,7 @@ import com.example.mealprep.model.MealPrep;
 import com.example.mealprep.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/meal")
@@ -28,6 +25,17 @@ public class MealController {
             mealService.addMeal(meal);
             return ResponseEntity.ok().body("New meal added: " + meal);
         }catch(Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getMeal(
+
+    ){
+        try{
+            return ResponseEntity.ok(mealService.getMeal());
+        } catch(Exception ex){
             return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
