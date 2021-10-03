@@ -39,4 +39,29 @@ public class MealController {
             return ResponseEntity.internalServerError().body(ex.getMessage());
         }
     }
+
+    @PostMapping(value = "/replace")
+    public ResponseEntity<String> editMeal(
+            @RequestParam(value = "mealName") String mealName,
+            @RequestBody() Meal meal
+    ){
+        try{
+            mealService.editMeal(mealName, meal);
+            return ResponseEntity.ok("Meal patched: " + meal);
+        } catch(Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteMeal(
+            @RequestParam(value = "mealName") String mealName
+    ){
+        try{
+            mealService.deleteMeal(mealName);
+            return ResponseEntity.ok("Meal deleted: " + mealName);
+        } catch(Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
 }
